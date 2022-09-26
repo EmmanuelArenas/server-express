@@ -1,0 +1,26 @@
+{
+  "name": "server-express",
+  "version": "1.0.0",
+  "description": "Servidor creado con node.js y express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmmanuelArenas/server-express.git"
+  },
+  "author": "emmanuel.live19@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EmmanuelArenas/server-express/issues"
+  },
+  "homepage": "https://github.com/EmmanuelArenas/server-express#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
