@@ -5,8 +5,7 @@ const { infoCursos } = require("./data/cursos.js");
 // console.log(infoCursos);
 
 //Routers
-const routerProgramacion = require("./routers/matematicas.js");
-
+const routerProgramacion = require("./routers/programacion.js");
 app.use("/api/cursos/programacion", routerProgramacion);
 
 const routerMatematicas = require("./routers/matematicas.js");

@@ -4,6 +4,9 @@ const { programacion } = require("../data/cursos.js").infoCursos;
 
 const routerProgramacion = express.Router();
 
+// Middleware -> Las funciones middleware se ejecutan: Después de recibir una solicitud. Antes de enviar una respuesta. Tienen acceso al objeto de la respuesta y a next(), una función  que se llama para ejecutar el próximo middleware.
+routerProgramacion.use(express.json());
+
 routerProgramacion.get("/", (req, res) => {
   res.send(JSON.stringify(programacion));
 });
@@ -38,6 +41,13 @@ routerProgramacion.get("/:lenguaje/:nivel", (req, res) => {
       .send(`No se encontraron cursos de ${lenguaje} de nivel ${nivel}`);
   }
   res.send(JSON.stringify(result));
+});
+
+// POST -> ejemplo en archivo index.http
+routerProgramacion.post("/", (req, res) => {
+  let cursoNuevo = req.body;
+  programacion.push(cursoNuevo);
+  res.send(JSON.stringify(programacion));
 });
 
 module.exports = routerProgramacion;
