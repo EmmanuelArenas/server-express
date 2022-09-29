@@ -77,4 +77,15 @@ routerProgramacion.patch("/:id", (req, res) => {
   res.send(JSON.stringify(programacion));
 });
 
+// DELETE ->ejemplo en archivo index.http
+routerProgramacion.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  const indice = programacion.findIndex((e) => e.id == id);
+
+  if (indice >= 0) {
+    programacion.splice(indice, 1);
+  }
+  res.send(JSON.stringify(programacion));
+});
+
 module.exports = routerProgramacion;
