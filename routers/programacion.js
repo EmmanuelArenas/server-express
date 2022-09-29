@@ -63,4 +63,18 @@ routerProgramacion.put("/:id", (req, res) => {
   res.json(programacion);
 });
 
+// PATCH -> ejemplo en archivo index.http
+routerProgramacion.patch("/:id", (req, res) => {
+  const infoActualizada = req.body;
+  const id = req.params.id;
+
+  const indice = programacion.findIndex((e) => e.id == id);
+
+  if (indice >= 0) {
+    const cursoModificar = programacion[indice];
+    Object.assign(cursoModificar, infoActualizada);
+  }
+  res.send(JSON.stringify(programacion));
+});
+
 module.exports = routerProgramacion;
