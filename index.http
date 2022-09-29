@@ -8,3 +8,17 @@ Content-Type: application/json
     "vistas": 45676,
     "nivel": "basico"
 }
+
+### 
+
+PUT http://localhost:3000/api/cursos/programacion/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 2,
+    "titulo": "Python Pntermedio con Proyectos",
+    "lenguaje": "python",
+    "vistas": 122920,
+    "nivel": "intermedio"
+}
+
