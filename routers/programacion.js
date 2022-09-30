@@ -8,7 +8,7 @@ const routerProgramacion = express.Router();
 routerProgramacion.use(express.json());
 
 routerProgramacion.get("/", (req, res) => {
-  res.send(JSON.stringify(programacion));
+  res.send(programacion);
 });
 
 routerProgramacion.get("/:lenguaje", (req, res) => {
@@ -21,11 +21,9 @@ routerProgramacion.get("/:lenguaje", (req, res) => {
 
   // console.log(req.query.ordenar);
   if (req.query.ordenar === "vistas") {
-    return res.send(
-      JSON.stringify(resultado.sort((a, b) => a.vistas - b.vistas))
-    );
+    return res.send(resultado.sort((a, b) => a.vistas - b.vistas));
   }
-  res.send(JSON.stringify(resultado));
+  res.send(resultado);
 });
 
 routerProgramacion.get("/:lenguaje/:nivel", (req, res) => {
@@ -39,15 +37,16 @@ routerProgramacion.get("/:lenguaje/:nivel", (req, res) => {
     return res
       .status(404)
       .send(`No se encontraron cursos de ${lenguaje} de nivel ${nivel}`);
+    return res.status(404).end(); //No retorna ningun contenido
   }
-  res.send(JSON.stringify(result));
+  res.send(result);
 });
 
 // POST -> ejemplo en archivo index.http
 routerProgramacion.post("/", (req, res) => {
   let cursoNuevo = req.body;
   programacion.push(cursoNuevo);
-  res.send(JSON.stringify(programacion));
+  res.send(programacion);
 });
 
 // PUT -> ejemplo en archivo index.http
@@ -59,7 +58,10 @@ routerProgramacion.put("/:id", (req, res) => {
 
   if (indice >= 0) {
     programacion[indice] = cursoActualizado;
+  } else {
+    res.status(404);
   }
+
   res.json(programacion);
 });
 
@@ -74,7 +76,7 @@ routerProgramacion.patch("/:id", (req, res) => {
     const cursoModificar = programacion[indice];
     Object.assign(cursoModificar, infoActualizada);
   }
-  res.send(JSON.stringify(programacion));
+  res.send(programacion);
 });
 
 // DELETE ->ejemplo en archivo index.http
@@ -84,8 +86,10 @@ routerProgramacion.delete("/:id", (req, res) => {
 
   if (indice >= 0) {
     programacion.splice(indice, 1);
+  } else {
+    res.status(404);
   }
-  res.send(JSON.stringify(programacion));
+  res.send(programacion);
 });
 
 module.exports = routerProgramacion;
